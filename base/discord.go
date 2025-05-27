@@ -6,6 +6,9 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/sirupsen/logrus"
+
+	"aggrerelay/model"
+	"aggrerelay/relay"
 )
 
 func DiscordStart(ctx context.Context) {
@@ -16,7 +19,7 @@ func DiscordStart(ctx context.Context) {
 	}
 
 	// add handler
-	// bot.AddHandler()
+	bot.AddHandler(relay.DiscordRelay)
 
 	err = bot.Open() // websocket connect
 	if err != nil {
@@ -28,5 +31,5 @@ func DiscordStart(ctx context.Context) {
 	<-ctx.Done()
 	bot.Close() // websocket disconnect
 	logrus.Info("discord bot is closing...")
-	DiscordShutdownChan <- struct{}{}
+	model.DiscordShutdownChan <- struct{}{}
 }

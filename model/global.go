@@ -1,7 +1,8 @@
-package base
+package model
 
+// init channel
 var (
-	Ch                  = make(chan int)
+	RelayChan           = make(chan int)
 	LineShutdownChan    = make(chan struct{})
 	DiscordShutdownChan = make(chan struct{})
 )

@@ -12,6 +12,7 @@ import (
 	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 	"github.com/line/line-bot-sdk-go/v8/linebot/webhook"
 
+	"aggrerelay/model"
 	"aggrerelay/relay"
 )
 
@@ -72,5 +73,5 @@ func LineStart(ctx context.Context) {
 		logrus.Errorf("Fiber shutdown error: %v", err)
 	}
 	logrus.Info("Fiber server is shutting down...")
-	LineShutdownChan <- struct{}{}
+	model.LineShutdownChan <- struct{}{}
 }
